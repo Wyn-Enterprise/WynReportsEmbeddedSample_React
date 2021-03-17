@@ -1,0 +1,24 @@
+.sign-in-error {
+    color: red !important;
+}
+
+.sign-in-form>* {
+    width: 280px;
+    height: 40px;
+    margin: 10px auto 10px auto;
+}
+
+.sign-in-form>*>* {
+    width: 100%;
+    height: 100%;
+}
+
+.sign-in-button {
+    color: white;
+    border: none;
+    background: #26A69A;
+}
+
+.sign-in-button:disabled {
+    background: #53565A;
+}

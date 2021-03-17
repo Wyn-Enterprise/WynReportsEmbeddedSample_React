@@ -1,0 +1,24 @@
+@import './signInForm/index.css';
+@import './appSidebar/index.css';
+@import '~@grapecity/wyn-report-viewer/dist/viewer-app.css';
+@import '~@grapecity/wyn-report-designer/dist/designer-app.css';
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.app {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.wyn-designer {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}

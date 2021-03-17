@@ -1,0 +1,70 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Wyn Designer sample</title>
+  <link rel="stylesheet" href="vendor/fonts-googleapis.css" />
+</head>
+
+<body>
+  <script src="designer-app.js"></script>
+  <script>src="viewer-app.js"</script>
+  <div>
+    <!-- signInForm -->
+    <div id="sign-in-root" style="display: none;">
+      <div style="display: table; height: 100%; width: 100%;">
+        <div style="display: table-cell; text-align: center; vertical-align: middle; margin: auto;">
+          <div class="sign-in-form">
+            <div class="sign-in-error">
+              <label id="sign-in-error"></label>
+            </div>
+            <div>
+              <input autoFocus type="text" id="sign-in-portal-url" placeholder="Portal URL" />
+            </div>
+            <div>
+              <input autoFocus type="text" id="sign-in-username" placeholder="Username" />
+            </div>
+            <div>
+              <input autoFocus type="password" id="sign-in-password" placeholder="Password" />
+            </div>
+            <div>
+              <button id="sign-in-button" class="sign-in-button">Sign in</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- app -->
+    <div id="app-root" class="app" style="display: none;">
+      <!-- appSidebar -->
+      <div class="app-sidebar">
+        <div class="app-sidebar-header">
+          <ul class="app-sidebar-header-info">
+            <li><span id="app-portal-url"></span></li>
+            <li><span id="app-username"></span></li>
+          </ul>
+          <div class="app-sidebar-header-logout">
+            <button id="app-logout-button" class="app-logout-button">Log out</label>
+          </div>
+        </div>
+        <button id="app-create-report" class="app-create-report" type="button">Create new report</button>
+        <div class="app-sidebar-content">
+          <ul multiple="multiple" id="wyn-report-list" class="wyn-report-list"></ul>
+        </div>
+      </div>
+      <!-- designer -->
+      <div id="wyn-designer-root" class="wyn-designer" style="display: none;">
+        <div id="designer-id" style="width: 100%; height: 100%;"></div>
+        <div id="save-as-dialog-id"
+          style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;display: none;z-index: 9999;"></div>
+        <div id="save-dialog-id"
+          style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;display: none;z-index: 9999;"></div>
+        <div id="data-set-picker-dialog-id"
+          style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;display: none;z-index: 9999;background-color: #dedede;">
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

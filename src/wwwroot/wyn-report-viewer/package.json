@@ -1,0 +1,55 @@
+{
+  "_args": [
+    [
+      "@grapecity/wyn-report-viewer@4.1.175",
+      "C:\\Users\\evan.warren\\source\\Wyn\\GitHub Samples\\wyn-report-designer-react\\WynDesignerSample"
+    ]
+  ],
+  "_development": true,
+  "_from": "@grapecity/wyn-report-viewer@4.1.175",
+  "_id": "@grapecity/wyn-report-viewer@4.1.175",
+  "_inBundle": false,
+  "_integrity": "sha512-qH9kx6EVpDXtlNV1uhtD28SPYh3RfGrFkTJ+KmPAmYRP+xKUnwwVUBLH61Rf+LdW+KT0EI1quQgFOPg8zW2NSg==",
+  "_location": "/@grapecity/wyn-report-viewer",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@grapecity/wyn-report-viewer@4.1.175",
+    "name": "@grapecity/wyn-report-viewer",
+    "escapedName": "@grapecity%2fwyn-report-viewer",
+    "scope": "@grapecity",
+    "rawSpec": "4.1.175",
+    "saveSpec": null,
+    "fetchSpec": "4.1.175"
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_resolved": "http://npm.grapecitydev.com/@grapecity%2fwyn-report-viewer/-/wyn-report-viewer-4.1.175.tgz",
+  "_spec": "4.1.175",
+  "_where": "C:\\Users\\evan.warren\\source\\Wyn\\GitHub Samples\\wyn-report-designer-react\\WynDesignerSample",
+  "author": {
+    "name": "GrapeCity"
+  },
+  "description": "## How to install",
+  "files": [
+    "dist/viewer-app.css",
+    "dist/viewer-app.js",
+    "dist/viewer-app.light.css",
+    "dist/viewer-app.ars.css",
+    "dist/viewer-app.blue.css",
+    "dist/viewer-app.red.css",
+    "dist/viewer-app.forest.css",
+    "dist/viewer-app.dark-forest.css",
+    "dist/viewer-app.green.css",
+    "dist/viewer-app.warm-light.css",
+    "dist/viewer-app.scss"
+  ],
+  "license": "Commercial",
+  "main": "./dist/viewer-app.js",
+  "module": "./dist/viewer-app.js",
+  "name": "@grapecity/wyn-report-viewer",
+  "style": "./dist/viewer-app.css",
+  "version": "4.1.175"
+}

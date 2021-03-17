@@ -1,0 +1,54 @@
+{
+  "_args": [
+    [
+      "@grapecity/wyn-report-designer@4.1.13",
+      "C:\\Users\\evan.warren\\source\\Wyn\\GitHub Samples\\wyn-report-designer-react\\WynDesignerSample"
+    ]
+  ],
+  "_development": true,
+  "_from": "@grapecity/wyn-report-designer@4.1.13",
+  "_id": "@grapecity/wyn-report-designer@4.1.13",
+  "_inBundle": false,
+  "_integrity": "sha512-CdabgUP55fImVgCmEtQAfXNnrMNyl+UdnkFYif1A47h/XZlpHMUoapaFMr4nLw/ho27bV7L4S/cQsaVsbftpqg==",
+  "_location": "/@grapecity/wyn-report-designer",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@grapecity/wyn-report-designer@4.1.13",
+    "name": "@grapecity/wyn-report-designer",
+    "escapedName": "@grapecity%2fwyn-report-designer",
+    "scope": "@grapecity",
+    "rawSpec": "4.1.13",
+    "saveSpec": null,
+    "fetchSpec": "4.1.13"
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_resolved": "http://npm.grapecitydev.com/@grapecity%2fwyn-report-designer/-/wyn-report-designer-4.1.13.tgz",
+  "_spec": "4.1.13",
+  "_where": "C:\\Users\\evan.warren\\source\\Wyn\\GitHub Samples\\wyn-report-designer-react\\WynDesignerSample",
+  "author": {
+    "name": "GrapeCity"
+  },
+  "description": "Wyn Report Designer",
+  "files": [
+    "dist/designer-app.css",
+    "dist/designer-app.js",
+    "dist/designer-app.light.css",
+    "dist/designer-app.ars.css",
+    "dist/designer-app.blue.css",
+    "dist/designer-app.red.css",
+    "dist/designer-app.forest.css",
+    "dist/designer-app.dark-forest.css",
+    "dist/designer-app.green.css",
+    "dist/designer-app.warm-light.css"
+  ],
+  "license": "Commercial",
+  "main": "./dist/designer-app.js",
+  "module": "./dist/designer-app.js",
+  "name": "@grapecity/wyn-report-designer",
+  "style": "./dist/designer-app.css",
+  "version": "4.1.13"
+}
