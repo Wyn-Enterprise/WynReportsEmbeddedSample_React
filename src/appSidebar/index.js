@@ -27,23 +27,12 @@ export const createAppSidebar = (portalUrl, username, referenceToken) => {
             items[i].classList.remove('active');
         }
     }
-    const hideSideMenu = () => {
-        var item = document.getElementById("app-sidebar");
-        item.hidden = true;
-        appSidebar.setState({
-            open: !appSidebar.state.open
-          });
-    }
-
     
-        
-    
-
     const appSidebar = {
         onLogOut: null,
         onCreateReport: null,
         onOpenReport: null,
-        //onHideSideMenu: null,
+        onOpenReportDesigner: null,
         
         refreshReportsList: async () => {
             reports = await getReportList(portalUrl, referenceToken);
@@ -56,6 +45,20 @@ export const createAppSidebar = (portalUrl, username, referenceToken) => {
                     removeActiveReport();
                     item.classList.add('active');
                     appSidebar.onOpenReport(report)
+                }
+            });
+        },
+        refreshReportsList2: async () => {
+            reports = await getReportList(portalUrl, referenceToken);
+            sortReports();
+            reportsList.innerHTML = null;
+            reports.forEach(report => {
+                const item = createReportElement(report);
+                reportsList.appendChild(item);
+                item.onclick = () => {
+                    removeActiveReport();
+                    item.classList.add('active');
+                    appSidebar.onOpenReportViewer(report)
                 }
             });
         },
@@ -85,9 +88,9 @@ export const createAppSidebar = (portalUrl, username, referenceToken) => {
         removeActiveReport()
         appSidebar.onCreateReport();
     }
+    
     document.getElementById('app-logout-button').onclick = () => {
         appSidebar.onLogOut()
-        //appSidebar.hideSideMenu()
     }
     return appSidebar;
 }
