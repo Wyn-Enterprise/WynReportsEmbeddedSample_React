@@ -1,11 +1,12 @@
 # Wyn Designer Sample
-
-This sample demonstrates the use of GrapeCity ActiveReports WynDesigner connected to the Wyn portal.
+---
+This sample demonstrates the use of Wyn ReportDesigner connected to the Wyn portal.
 
 ## System requirements
 
 This sample requires:
  * [Node.js](https://nodejs.org/en/download/) 10.14.0 or newer
+ * [Wyn Enterprise](https://wyn.grapecity.com/demos/request/trial) 4.0.1173.0 or newer
 
 ## Build and run the sample
 
@@ -13,22 +14,11 @@ This sample requires:
 
 We download the given packages and update reporting sample packages. After we compile the sample and run it.
 
-### About semantic versioning
-
-package.json
-```
-"package-name": "~x.y.z"
-```
-
-- x - major releases
-- y - minor releases
-- z - patch releases
-- ~ - updating packages as instructed will update to the latest patch
-
 ### Steps
 
-1. Execute `run-yarn.cmd` ( or `run-npm.cmd` )
-2. Open http://localhost:3000 by browser
+1. Install [Wyn Enterprise](https://wyn.grapecity.com/demos/request/trial) to your  machine
+2. Execute `run-yarn.cmd` ( or `run-npm.cmd` )
+3. Open http://localhost:3000 by browser
 
 or manually yarn
 
@@ -48,18 +38,19 @@ or manually npm
 5. Enter `npm run dev`
 6. Open http://localhost:3000 by browser
 
-## Available portal list
+### About semantic versioning
 
- - https://portal41-cn.grapecitydev.com/ - cn 4.1
- - https://portal41-en.grapecitydev.com/ - en 4.1
- - https://portal-4-cn.grapecitydev.com/ - cn 4.0
- - https://portal-4-en.grapecitydev.com/ - en 4.0
- - https://gces-dev-cn.grapecitydev.com/ - cn dev
- - https://gces-dev-en.grapecitydev.com/ - en dev
+package.json
+```
+"package-name": "~x.y.z"
+```
 
-## Cross-Origin Resource Sharing of portals
+- x - major releases
+- y - minor releases
+- z - patch releases
+- ~ - updating packages as instructed will update to the latest patch
 
-All portals are configured with these permissions:
+### Documentation
 
- - Access-Control-Allow-Origin `3000`, `42002`, `42008` ports
- - Access-Control-Expose-Headers `content-disposition`, `location`
+- [Developer Documentation](https://wyn.grapecity.com/docs/dev-docs/)
+- [Embedding Wyn Report Viewer and Designer Using Div Tags](https://wyn.grapecity.com/docs/dev-docs/Embedding-Wyn/Embedding-Designer-Viewer-Using-Div)
