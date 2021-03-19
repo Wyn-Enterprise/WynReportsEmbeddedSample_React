@@ -16,7 +16,7 @@ We download the given packages and update reporting sample packages. After we co
 
 ### Steps
 
-1. Install [Wyn Enterprise](https://wyn.grapecity.com/demos/request/trial) to your  machine
+1. Install [Wyn Enterprise](https://wyn.grapecity.com/demos/request/trial) to your  machine (see configuration section below for CORS and Exposed Headers settings)
 2. Execute `run-yarn.cmd` ( or `run-npm.cmd` )
 3. Open http://localhost:3000 by browser
 
@@ -37,6 +37,15 @@ or manually npm
 4. Enter `npm update @grapecity/wyn-report-designer --latest`
 5. Enter `npm run dev`
 6. Open http://localhost:3000 by browser
+
+### Wyn Enterprise System Configurations for API usage
+1. In the Administrator Portal after installing Wyn Enterprise, open the System Configuration Page. 
+2. Set http://localhost:3000 (or the host application URL) in the "Allowed CORS Origins" section. 
+3. Set 'content-disposition' and 'location' in the "Exposed Headers" section. 
+
+After configuration, the System configuration page should look like the image below: 
+
+<img src="/WynEnterprise-SystemConfigPage.png" width="400">
 
 ### About semantic versioning
 
