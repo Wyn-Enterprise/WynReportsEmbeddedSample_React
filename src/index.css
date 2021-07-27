@@ -1,0 +1,65 @@
+
+@import '~@grapecity/wyn-report-viewer/dist/viewer-app.css';
+@import '~@grapecity/wyn-report-designer/dist/designer-app.css';
+@import './variables.css';
+
+
+* {
+	box-sizing: border-box;
+}
+
+html, body {
+	overflow: hidden;
+
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+
+	font-family: "Open Sans", "open sans", "segoe ui", helvetica, arial, sans-serif;
+}
+
+@import './signInForm/index.css';
+@import './orgDropdown/index.css';
+@import './appSidebar/index.css';
+@import './loader/index.css';
+
+#report-designer-app {
+	position: relative;
+}
+
+.app {
+	display: flex;
+	flex-direction: row;
+
+	width: 100%;
+	height: 100%;
+
+	background: var(--color-blank-area-bg);
+}
+
+.app-instructions {
+	position: absolute;
+	top: 50%;
+	left: calc(50% + var(--width-sidebar)/2);
+
+	width: 50%;
+	padding: 20px;
+
+	transform: translateX(-50%)  translateY(-70%);
+
+	background-color: var(--color-instructions-bg);
+	box-shadow: var(--color-shadow) 0 0 15px;
+}
+
+.app-instructions-list {
+	padding-inline-start: 20px;
+}
+
+.app-instructions-item {
+	padding: 10px;
+}
+
+.not-displayed {
+	display: none !important;
+}
