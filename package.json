@@ -9,8 +9,8 @@
 		"dev": "webpack-dev-server --progress --colors --config webpack.config.dev.js"
 	},
 	"dependencies": {
-		"@grapecity/wyn-report-designer": "^5.1.37",
-		"@grapecity/wyn-report-viewer": "^5.1.857"
+		"@grapecity/wyn-report-designer": "^6.0.43",
+		"@grapecity/wyn-report-viewer": "6.0.1444"
 	},
 	"devDependencies": {
 		"babel-eslint": "^10.0.3",
