@@ -20,6 +20,7 @@ const createApp = async (portalUrl, username, organizationName, referenceToken) 
 		open: () => {
 			appSidebar.onCreateReport = (reportType) => {
 				designer.createReport(reportType);
+				document.getElementById('report-viewer-app').classList.add('not-displayed');
 			};
 			appSidebar.onOpenReport = async (report) => {
 				rpt = report
