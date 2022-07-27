@@ -2,8 +2,8 @@ import { getOrganizationObjList, getUserRoles } from '../api';
 import { createOrgDropdown } from '../orgDropdown';
 import { executeTask } from '../loader';
 
-const DefaultPortalUrl = 'http://localhost:51980/';
-const DefaultUsername = 'admin';
+const DefaultPortalUrl = '';
+const DefaultUsername = '';
 
 const RootKey = 'reportDesignerSample';
 const PortalUrlKey = 'portalUrl';
