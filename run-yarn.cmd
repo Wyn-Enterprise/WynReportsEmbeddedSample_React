@@ -1,4 +1,3 @@
 call yarn
-call yarn upgrade @grapecity/wyn-report-viewer
-call yarn upgrade @grapecity/wyn-report-designer
-call yarn dev
+call yarn upgrade @mescius/wyn-integration
+call yarn start
