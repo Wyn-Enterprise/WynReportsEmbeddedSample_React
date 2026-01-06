@@ -1,56 +1,76 @@
 .reportsList {
     position: relative;
-    width: 300px;
-    min-width: 300px;
+    width: var(--width-sidebar);
+    min-width: var(--width-sidebar);
     height: 100%;
-    padding-top: 0px;
-    box-shadow: 0 0 5px 2px rgba(0,0,0,.4);
-    color: #ebebeb;
-    background-color: #182230;
+    padding: 12px;
+    color: var(--color-sidebar-text);
+    background: linear-gradient(180deg, #071017 0%, #0f1724 100%);
+    border-radius: 10px;
+}
+
+/* Scrollbar for reports list */
+.reportsList {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+.reportsList::-webkit-scrollbar {
+    width: 10px;
+}
+.reportsList::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+    border-radius: 8px;
+}
+.reportsList::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    border-radius: 8px;
+}
+.reportsList::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover);
 }
 
 .topBar {
-    height: 80px;
-    width: 300px;
-    vertical-align: middle;
-    text-align: left;
-    font-size: 20px;
-    padding: 2px 20px;
-    background-color: black;
-    color: white;
-    margin-bottom: 20px;
+    height: 64px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 12px;
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 12px;
 }
 
 .listItem {
     display: flex;
-    height: 35px;
-    padding-left: 15px;
-    cursor: auto;
     align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background .15s, transform .08s;
 }
 
 .listItem > i {
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 2px;
+    padding: 8px;
+    border-radius: 6px;
 }
 
 .listItem > img {
     margin-right: 5px;
-    color: gray;
 }
 
 .listItem > h3 {
     overflow: hidden;
     margin: 0;
-    cursor: default;
     text-overflow: ellipsis;
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 13px;
+    font-weight: 600;
+    color: #e6eef8;
 }
 
 .listItem.active {
-    background-color: var(--color-sidebar-item-bg-active);
+    background-color: rgba(255,108,0,0.12);
 }
 
 .listItem > span {
@@ -58,8 +78,10 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    color: var(--muted);
 }
 
 .listItem:hover {
-    background-color: var(--color-sidebar-item-bg-hover);
+    background-color: rgba(255, 255, 255, 0.116);
+    transform: translateY(-1px);
 }

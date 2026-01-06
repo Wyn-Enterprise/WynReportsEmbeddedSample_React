@@ -1,0 +1,58 @@
+:root {
+  --font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --bg: #f4f6f9;
+  --surface: #ffffff;
+  --muted: #6b7280;
+  --text-color: #15202b;
+  --accent: #ff6c00;
+  --accent-hover: #ff7f2a;
+  --accent-focus: #ff9a66;
+  --danger: #e11d48;
+
+  --width-sidebar: 320px;
+  --color-sidebar-text: #f3f4f6;
+  --color-sidebar-border: rgba(16,24,32,0.06);
+  --color-sidebar-body-bg: #0f1724;
+  --fs-sidebar: 14px;
+  --color-sidebar-header-bg: rgba(255,255,255,0.03);
+  --color-sidebar-text-btn: #ffffff;
+  --color-sidebar-btn: #0b1220;
+  --color-sidebar-btn-hover: #223049;
+  --color-sidebar-scroll-bg: transparent;
+  --color-sidebar-item-bg-active: rgba(255,255,255,0.04);
+  --color-sidebar-item-bg-hover: rgba(255,255,255,0.02);
+
+  /* Scrollbar colors */
+  --scrollbar-track: rgba(255,255,255,0.03);
+  --scrollbar-thumb: rgba(255,255,255,0.14);
+  --scrollbar-thumb-hover: rgba(255,255,255,0.24);
+
+  --fs-controls: 14px;
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-focus: var(--accent-focus);
+  --color-text-main: #ffffff;
+  --color-text-input: #0b1220;
+  --color-text-placeholder: #94a3b8;
+  --color-text-error: var(--danger);
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background: var(--bg);
+  color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Utility */
+.card-surface {
+  background: var(--surface);
+  border-radius: 12px;
+  box-shadow: none;
+}
