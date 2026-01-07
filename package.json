@@ -45,6 +45,7 @@
   "license": "MIT",
   "overrides": {
     "nth-check": "^2.1.1",
-    "postcss": "^8.4.49"
+    "postcss": "^8.4.49",
+    "webpack-dev-server": "5.2.1"
   }
 }
