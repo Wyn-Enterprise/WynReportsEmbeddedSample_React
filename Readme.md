@@ -13,20 +13,18 @@ This sample requires:
 
 We download the given packages and update reporting sample packages. After we compile the sample and run it.
 
-### Steps to run the sample
-
-1. Run command `npm install` to install all required modules
-2. Run `npm update @wynenterprise/wyn-report-viewer --latest` to update the latest wyn-report-viewer build.
-3. Run `npm update @wynenterprise/wyn-report-designer --latest` to update the latest wyn-report-designer build.
-4. Run `npm run start` to start the development server (http://localhost:3000)
-
-### Wyn Enterprise System Configurations for API usage
-1. In the Administrator Portal after installing Wyn Enterprise, open the System Configuration Page. 
+### Setup Wyn Enterprise System Configurations for API usage
+1. In the Administrator Portal of Wyn Enterprise, open the System Configuration Page. 
 2. Set http://localhost:3000 (or the host application URL) in the "Allowed CORS Origins" section. 
 3. Set 'content-disposition' and 'location' in the "Exposed Headers" section. 
 
 After configuration, the System configuration page should look like the image below: 
 ![](WynEnterprise-SystemConfigPage.png)
+
+### Steps to run the sample
+
+1. Run command `npm install` to install all required modules
+2. Run `npm run start` to start the development server (http://localhost:3000)
 
 ### Documentation
 
