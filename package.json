@@ -16,6 +16,9 @@
     "lint": "eslint ."
   },
   "license": "MIT",
+  "overrides": {
+    "esbuild": "^0.25.0"
+  },
   "devDependencies": {
     "@types/node": "^20.19.27",
     "@types/react": "^18.2.74",
