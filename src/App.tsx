@@ -1,148 +1,194 @@
-import React, { useEffect } from 'react';
-import { WynIntegration } from "@mescius/wyn-integration";
-import { getReportList } from './components/library/index';
-import ReportsList from './components/reports-list/ReportsList';
-import SignIn from './components/sign-in/Sign-In';
-import './styles/App.css';
+import React, { useState, useRef } from "react";
+import { WynIntegration } from "@wynenterprise/wyn-integration";
+import { getReportList, Report } from "./components/library/index";
+import ReportsList from "./components/reports-list/ReportsList";
+import SignIn from "./components/sign-in/Sign-In";
+import "./styles/App.css";
 
-export default class App extends React.Component<any, any> {
+const App: React.FC = () => {
+    const [token, setToken] = useState<string | null>(null);
+    const [username, setUsername] = useState<string>("");
+    const [serverUrl, setServerUrl] = useState<string>("");
+    const [reportsList, setReportsList] = useState<Report[]>([]);
 
-  ins: any;
-  reportId: any;
-  reportType:any;
-  reportName: any;
-  constructor(props:any) {
-      super(props);
-      this.state = {
-          token: null,
-          username: '',
-          serverUrl: '',
-          reportID: '',
-          docTitle: '',
-          documentType: 'rdl',
-          reportType:'CPL',
-          reportsList: null
-      };
+    // Refs for mutable values that don't need to trigger re-renders
+    const reportIdRef = useRef<string>("");
+    const reportTypeRef = useRef<"CPL" | "FPL">("CPL");
 
-      this.selectedReport = this.selectedReport.bind(this);
-      this.signIn = this.signIn.bind(this);
-      this.signOut = this.signOut.bind(this);
-      this.createNewRdlReport = this.createNewRdlReport.bind(this);
-      this.createNewFplReport = this.createNewFplReport.bind(this);
-      this.createViewer = this.createViewer.bind(this);
-      this.openReportInDesigner = this.openReportInDesigner.bind(this);
-      this.createDesigner = this.createDesigner.bind(this);
-  }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const insRef = useRef<any>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
 
-  selectedReport = (reportId:string, name:string) => {        
-      this.reportId = reportId;
-      this.reportName = name;
-      this.ins?.destroy?.();
-      this.createViewer();
-  }
+    const signIn = async (url: string, newToken: string, user: string) => {
+        try {
+            const list = await getReportList(url, newToken);
+            setToken(newToken);
+            setServerUrl(url);
+            setUsername(user);
+            setReportsList(list);
+        } catch (error) {
+            console.error("Failed to load reports list", error);
+        }
+    };
 
-  signIn = async (serverUrl:string, token:string, username:string) => {
-      var reportsList = await getReportList(serverUrl, token);
-      this.setState({ token: token, serverUrl: serverUrl, username: username, reportsList: reportsList });
-  }
+    const signOut = () => {
+        setToken(null);
+        setReportsList([]);
+        setUsername("");
+        setServerUrl("");
 
-  signOut() {
-      this.setState({ token: null });
-  }
-  clearContainer = () => {
-      const container = document.querySelector('#wyn-root');
-      if (container) container.innerHTML = '';
-    }
-  createViewer = () => {
-      this.clearContainer();
-      WynIntegration.createReportViewer({
-          baseUrl: this.state.serverUrl,
-          reportId: this.reportId,
-          //theme: 'red',
-          token: this.state.token,
-          // for v5.0, v5.1 ignore
-          //version: '5.0.21782.0',
-      }, '#wyn-root').then(ins => {
-          this.ins = ins;            
-      });
-  }
+        // Clean up viewer
+        if (insRef.current && typeof insRef.current.destroy === 'function') {
+            insRef.current.destroy();
+        }
+        insRef.current = null;
 
-  createNewRdlReport = () => {
-      this.ins?.destroy?.();     
-      this.reportId = '';
-      this.reportType='CPL';
-      this.createDesigner();
-  }
+        if (containerRef.current) {
+            containerRef.current.innerHTML = "";
+        }
+    };
 
-  createNewFplReport = () => {
-      this.ins?.destroy?.();      
-      this.reportId = '';
-      this.reportType='FPL';
-      this.createDesigner();
-  }
+    const clearContainer = () => {
+        if (containerRef.current) {
+            containerRef.current.innerHTML = "";
+        }
+    };
 
-  openReportInDesigner = () => {
-      this.ins?.destroy?.();
-      if (this.reportId === '')
-          alert('Please select a Report');
-      else
-          this.createDesigner();
-  }
+    const createViewer = async () => {
+        clearContainer();
+        if (!containerRef.current || !token) return;
 
-  createDesigner = () => {
-      this.clearContainer();  
-      WynIntegration.createReportDesigner({
-          baseUrl: this.state.serverUrl,
-          reportId: this.reportId,
-          language: 'en',
-          token: this.state.token
-          // for v5.0, v5.1 ignore
-          //version: '5.0.21782.0',
-      }, '#wyn-root').then(ins => {
-          this.ins = ins;
-          if(this.reportId==='')
-              this.ins.api.createReport({reportType:this.reportType});
-          //this.loading = false;
-      });
-  }
+        try {
+            const ins = await WynIntegration.createReportViewer(
+                {
+                    baseUrl: serverUrl,
+                    reportId: reportIdRef.current,
+                    token: token,
+                },
+                "#wyn-root"
+            );
+            insRef.current = ins;
+        } catch (e) {
+            console.error("Failed to create report viewer", e);
+        }
+    };
 
-  render() {
-      const { token, serverUrl, username, reportsList, reportID } = this.state;
+    const selectedReport = (id: string) => {
+        reportIdRef.current = id;
+        if (insRef.current && typeof insRef.current.destroy === 'function') {
+            insRef.current.destroy();
+        }
+        createViewer();
+    };
 
-      const Application = (
-          <div className="app">
-              {token == null && (
-                  <SignIn signIn={this.signIn} />
-              )}
-              {token != null && (
-                  <div className="app-root">
-                      <div className="app-sidebar">
-                          <div className="app-sidebar-header">
-                              <div className="app-sidebar-header-group">
-                                  <div id="app-portal-url">{serverUrl}</div>
-                              </div>
-                              <div className="app-sidebar-header-group app-user-info">
-                                  <div>
-                                      <div id="app-username">{username}</div>
-                                  </div>
-                                  <button id="app-logout-button" className="app-sidebar-btn app-logout-button" onClick={this.signOut}>Log Out</button>
-                              </div>
-                              <div className="app-sidebar-header-group">
-                                  <button id="app-create-report-rdl" className="app-sidebar-btn app-create-report-btn" type="button" onClick={this.createNewRdlReport}>Create New RDL Report</button>
-                                  <button id="app-create-report-fpl" className="app-sidebar-btn app-create-report-btn" type="button" onClick={this.createNewFplReport}>Create New Page Report</button>
-                                  <button id="app-open-report-designer" className="app-sidebar-btn app-create-report-btn" type="button" onClick={this.openReportInDesigner}>Design Selected Report</button>
-                              </div>
-                          </div>
-                          <div className="app-sidebar-content">
-                              <ReportsList selectedReport={this.selectedReport} reportsList={reportsList} />
-                          </div>                            
-                      </div>
-                      <div id='wyn-root'></div>
-                  </div>
-              )
-              }
-          </div>
-      );
-      return Application;
-  }
-}
+    const createDesigner = async () => {
+        clearContainer();
+        if (!containerRef.current || !token) return;
+
+        try {
+            const ins = await WynIntegration.createReportDesigner(
+                {
+                    baseUrl: serverUrl,
+                    reportId: reportIdRef.current,
+                    language: "en",
+                    token: token,
+                },
+                "#wyn-root"
+            );
+            insRef.current = ins;
+
+            if (reportIdRef.current === "" && ins.api) {
+                ins.api.createReport({ reportType: reportTypeRef.current });
+            }
+        } catch (e) {
+            console.error("Failed to create report designer", e);
+        }
+    };
+
+    const createNewRdlReport = () => {
+        if (insRef.current?.destroy) insRef.current.destroy();
+        reportIdRef.current = "";
+        reportTypeRef.current = "CPL";
+        createDesigner();
+    };
+
+    const createNewFplReport = () => {
+        if (insRef.current?.destroy) insRef.current.destroy();
+        reportIdRef.current = "";
+        reportTypeRef.current = "FPL";
+        createDesigner();
+    };
+
+    const openReportInDesigner = () => {
+        if (insRef.current?.destroy) insRef.current.destroy();
+        if (reportIdRef.current === "") {
+            alert("Please select a Report");
+        } else {
+            createDesigner();
+        }
+    };
+
+    return (
+        <div className="app">
+            {!token && <SignIn signIn={signIn} />}
+            {token && (
+                <div className="app-root">
+                    <div className="app-sidebar">
+                        <div className="app-sidebar-header">
+                            <div className="app-sidebar-header-group">
+                                <div id="app-portal-url">{serverUrl}</div>
+                            </div>
+                            <div className="app-sidebar-header-group app-user-info">
+                                <div>
+                                    <div id="app-username">{username}</div>
+                                </div>
+                                <button
+                                    id="app-logout-button"
+                                    className="app-sidebar-btn app-logout-button"
+                                    onClick={signOut}
+                                >
+                                    Log Out
+                                </button>
+                            </div>
+                            <div className="app-sidebar-header-group">
+                                <button
+                                    id="app-create-report-rdl"
+                                    className="app-sidebar-btn app-create-report-btn"
+                                    type="button"
+                                    onClick={createNewRdlReport}
+                                >
+                                    <span className="btn-icon">+</span> Create New RDL Report
+                                </button>
+                                <button
+                                    id="app-create-report-fpl"
+                                    className="app-sidebar-btn app-create-report-btn"
+                                    type="button"
+                                    onClick={createNewFplReport}
+                                >
+                                    <span className="btn-icon">+</span> Create New Page Report
+                                </button>
+                                <button
+                                    id="app-open-report-designer"
+                                    className="app-sidebar-btn app-create-report-btn"
+                                    type="button"
+                                    onClick={openReportInDesigner}
+                                >
+                                    <span className="btn-icon">+</span> Design Selected Report
+                                </button>
+                            </div>
+                        </div>
+                        <div className="app-sidebar-content">
+                            <ReportsList
+                                selectedReport={selectedReport}
+                                reportsList={reportsList}
+                            />
+                        </div>
+                    </div>
+                    <div id="wyn-root" ref={containerRef}></div>
+                </div>
+            )}
+        </div>
+    );
+};
+
+export default App;

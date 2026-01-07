@@ -1,62 +1,32 @@
 # Wyn Designer Sample
 
-This sample demonstrates the use of GrapeCity ActiveReports WynDesigner connected to the Wyn portal.
+This sample demonstrates how to embed Wyn Enterprise's ActiveReports (WynDesigner and Wyn Report Viewer) into a React application and connect them to a Wyn portal for editing and viewing reports.
 
 ## System requirements
 
 This sample requires:
- * [Node.js](https://nodejs.org/en/download/) 10.14.0 or newer
- * [Wyn Enterprise](https://wyn.grapecity.com/demos/request/trial) 5.0.00236.0 or newer
+ * [Node.js](https://nodejs.org/en/download/)
+ * [Wyn Enterprise](https://www.wynenterprise.com/try-wyn-for-free/30-day-wyn-trial/)
 ## Build and run the sample
 
 ### Description
 
 We download the given packages and update reporting sample packages. After we compile the sample and run it.
 
-### Steps
-
-1. Execute `run-yarn.cmd` ( or `run-npm.cmd` )
-2. Open http://localhost:3000 by browser
-
-or manually yarn
-
-1. Open cmd.exe and go to the root of the directory WynDesignerSample
-2. Enter `yarn`
-3. Enter `yarn upgrade @grapecity/wyn-report-viewer`
-4. Enter `yarn upgrade @grapecity/wyn-report-designer`
-5. Enter `yarn dev`
-6. Open http://localhost:3000 by browser
-
-or manually npm
-
-1. Open cmd.exe and go to the root of the directory WynDesignerSample
-2. Enter `npm install`
-3. Enter `npm update @grapecity/wyn-report-viewer --latest`
-4. Enter `npm update @grapecity/wyn-report-designer --latest`
-5. Enter `npm run dev`
-6. Open http://localhost:3000 by browser
-
-### Wyn Enterprise System Configurations for API usage
-1. In the Administrator Portal after installing Wyn Enterprise, open the System Configuration Page. 
+### Setup Wyn Enterprise System Configurations for API usage
+1. In the Administrator Portal of Wyn Enterprise, open the System Configuration Page. 
 2. Set http://localhost:3000 (or the host application URL) in the "Allowed CORS Origins" section. 
 3. Set 'content-disposition' and 'location' in the "Exposed Headers" section. 
 
 After configuration, the System configuration page should look like the image below: 
 ![](WynEnterprise-SystemConfigPage.png)
 
-### About semantic versioning
+### Steps to run the sample
 
-package.json
-```
-"package-name": "~x.y.z"
-```
-
-- x - major releases
-- y - minor releases
-- z - patch releases
-- ~ - updating packages as instructed will update to the latest patch
+1. Run command `npm install` to install all required modules
+2. Run `npm run start` to start the development server (http://localhost:3000)
 
 ### Documentation
 
-- [Developer Documentation](https://wyn.grapecity.com/docs/dev-docs/)
-- [Embedding Wyn Report Viewer and Designer Using Div Tags](https://wyn.grapecity.com/docs/dev-docs/Embedding-Wyn/Embedding-Designer-Viewer-Using-Div)
+- [Developer Documentation](https://learn.wynenterprise.com/docs/dev-docs)
+- [Embedding Wyn Report Viewer and Designer Using Div Tags](https://learn.wynenterprise.com/docs/dev-docs/Embed-Wyn-Enterprise-into-Web-Applications/Embedding-Designer-Viewer-Using-Div)

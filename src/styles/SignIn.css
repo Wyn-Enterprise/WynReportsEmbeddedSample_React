@@ -1,50 +1,74 @@
-#sign-in-root {
+.sign-in-root {
     display: flex;
     flex-direction: column;
     height: 100vh;
     align-items: center;
     justify-content: center;
+    padding: 24px;
 }
 
 .sign-in-form {
-    width: 340px;
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 0 auto;
 }
 
 .sign-in-form > *, #org-root > div, #org-root > label {
     box-sizing: border-box;
     width: 100%;
-    margin-bottom: 25px;
+    margin-bottom: 2px;
 }
 
 .sign-in-form .sign-in-control {
-    height: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: stretch;
 }
 
-.sign-in-control > * {
+.sign-in-control > .sign-in-input {
     width: 100%;
-    height: 100%;
+    min-height: 48px;
+}
+
+.sign-in-card {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    padding: 18px;
+    border-radius: 12px;
+    background: var(--surface);
+    box-shadow: none;
+    margin: 0 auto;
 }
 
 .sign-in-error {
-    margin-bottom: 25px;
+    margin-bottom: 8px;
     color: var(--color-text-error);
-    font-size: var(--fs-controls);
+    font-size: 13px;
 }
 
-.sign-in-error > * {
-    margin-bottom: 5px;
+.sign-in-field-error {
+    margin-top: 1px;
+    color: var(--color-text-error);
+    font-size: 13px;
+    font-weight: 600;
+    min-height: 18px;
 }
 
 .sign-in-button {
-    height: 40px;
+    height: 44px;
     width: 100%;
     cursor: pointer;
-    transition: all .3s;
+    transition: all .2s;
     color: var(--color-text-main);
     border: none;
-    border-radius: 2px;
+    border-radius: 10px;
     background-color: var(--color-accent);
     font-size: var(--fs-controls);
+    font-weight: 600;
 }
 
 .sign-in-button:hover {
@@ -60,18 +84,19 @@
 }
 
 .sign-in-input {
-    padding: 5px;
-    transition: all .3s;
+    padding: 10px 12px;
+    transition: all .18s;
     color: var(--color-text-input);
-    border: none;
-    border-bottom: 1px solid var(--color-accent);
+    border: 1px solid rgba(15,23,42,0.06);
+    border-radius: 8px;
+    background: #fff;
     font-size: var(--fs-controls);
 }
 
 .sign-in-input:focus {
-    border-bottom: 1px solid var(--color-accent-focus);
+    border-color: rgba(255,108,0,0.18);
+    box-shadow: none;
     outline: none;
-    background-color: #fff;
 }
 
 .sign-in-input::placeholder {
