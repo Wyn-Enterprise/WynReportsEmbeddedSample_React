@@ -1,29 +1,26 @@
-import * as React from "react";
+import React from "react";
 import "../../styles/ReportsList.css";
+import { Report } from "../library/index";
 
-export default class ReportsList extends React.Component<any, any> {
-
-
-    constructor(props:any) {
-        super(props);       
-    }
-
-    onReportClick = (rdl:any) => {        
-        this.props.selectedReport(rdl.id, rdl.name);
-    }
-
-    public render() {
-        const { reportsList } = this.props;
-
-        return (
-            <div className="dashboardsList">
-                {reportsList.map((rdl:any, index:any) => {
-                    return (
-                        <div className="listItem" key={index} onClick={() => this.onReportClick(rdl)}>
-                            <h3>{rdl.name}</h3>
-                        </div>)
-                })}
-            </div>
-        )
-    }
+interface ReportsListProps {
+    reportsList: Report[];
+    selectedReport: (id: string, name: string) => void;
 }
+
+const ReportsList: React.FC<ReportsListProps> = ({ reportsList, selectedReport }) => {
+    return (
+        <div className="dashboardsList">
+            {reportsList && reportsList.map((report) => (
+                <div 
+                    className="listItem" 
+                    key={report.id} 
+                    onClick={() => selectedReport(report.id, report.name)}
+                >
+                    <h3>{report.name}</h3>
+                </div>
+            ))}
+        </div>
+    );
+};
+
+export default ReportsList;

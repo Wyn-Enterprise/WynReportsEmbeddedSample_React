@@ -66,7 +66,7 @@ const SignIn: React.FC<SignInProps> = ({ signIn }) => {
       body.append("username", trimmedUser);
       body.append("password", trimmedPass);
       body.append("client_id", "integration");
-      body.append("client_secret", "eunGKas3Pqd6FMwx9eUpdS7xmz");
+      body.append("client_secret", process.env.REACT_APP_CLIENT_SECRET || "");
 
       const response = await fetch(server + "/connect/token", {
         method: "POST",

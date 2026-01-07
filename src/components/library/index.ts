@@ -1,7 +1,12 @@
-export const concatUrls = (...urls:String[]) => {
-    const skipNullOrEmpty = (value:any) => !!value;
-    const trimLeft = (value:any, char:any) => (value.substr(0, 1) === char ? value.substr(1) : value);
-    const trimRight = (value:any, char:any) => (value.substr(value.length - 1) === char ? value.substr(0, value.length - 1) : value);
+export interface Report {
+    id: string;
+    name: string;
+}
+
+export const concatUrls = (...urls: string[]) => {
+    const skipNullOrEmpty = (value: any) => !!value;
+    const trimLeft = (value: string, char: string) => (value.substring(0, 1) === char ? value.substring(1) : value);
+    const trimRight = (value: string, char: string) => (value.substring(value.length - 1) === char ? value.substring(0, value.length - 1) : value);
     return urls
         .map(x => x && x.trim())
         .filter(skipNullOrEmpty)
@@ -17,9 +22,9 @@ const defaultHeaders = {
     'pragma': 'no-cache',
 };
 
-const makeHeaders = (referenceToken:any) => ({ ...defaultHeaders, 'Reference-Token': referenceToken });
+const makeHeaders = (referenceToken: string) => ({ ...defaultHeaders, 'Reference-Token': referenceToken });
 
-const postGraphQlRequest = async (portalUrl:any, referenceToken:any, requestPayload:any) => {
+const postGraphQlRequest = async (portalUrl: string, referenceToken: string, requestPayload: any) => {
     const url = concatUrls(portalUrl, 'api/graphql');
     const init = {
         headers: makeHeaders(referenceToken),
@@ -34,24 +39,17 @@ const postGraphQlRequest = async (portalUrl:any, referenceToken:any, requestPayl
     return result;
 };
 
-export const getReportList = async (portalUrl:any, referenceToken:any) => {
+export const getReportList = async (portalUrl: string, referenceToken: string): Promise<Report[]> => {
     const result = await postGraphQlRequest(portalUrl, referenceToken, {
         query: 'query { documenttypes(key:"rdl") { documents { id, title } } }',
     });
-    const { documents } = result.data.documenttypes[0];
-    const list = documents.map((x:any) => ({ id: x.id, name: x.title }));
-    list.sort((x:any, y:any) => x.name.localeCompare(y.name));
-    return list;
-};
+    
+    if (!result?.data?.documenttypes?.[0]?.documents) {
+        return [];
+    }
 
-export const getReportInfo = async (portalUrl:any, referenceToken:any) => {
-    const result = await postGraphQlRequest(portalUrl, referenceToken, {
-        query: 'query { me { language, themeName } }',
-    });
-    const { data: { me: { language, themeName } } } = result;
-    return {
-        //pluginVersion: version,
-        theme: themeName,
-        locale: language,
-    };
+    const { documents } = result.data.documenttypes[0];
+    const list = documents.map((x: any) => ({ id: x.id, name: x.title }));
+    list.sort((x: Report, y: Report) => x.name.localeCompare(y.name));
+    return list;
 };
