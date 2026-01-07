@@ -1,5 +1,5 @@
 @import "./variables.css";
-@import "~bootstrap/dist/css/bootstrap";
+@import "bootstrap/dist/css/bootstrap";
 
 .app-root {
     display: flex;
