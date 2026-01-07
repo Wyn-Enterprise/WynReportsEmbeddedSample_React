@@ -10,11 +10,12 @@ const App: React.FC = () => {
     const [username, setUsername] = useState<string>("");
     const [serverUrl, setServerUrl] = useState<string>("");
     const [reportsList, setReportsList] = useState<Report[]>([]);
-    
+
     // Refs for mutable values that don't need to trigger re-renders
     const reportIdRef = useRef<string>("");
-    const reportTypeRef = useRef<"CPL" | "FPL">("CPL"); 
-    
+    const reportTypeRef = useRef<"CPL" | "FPL">("CPL");
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const insRef = useRef<any>(null);
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -35,13 +36,13 @@ const App: React.FC = () => {
         setReportsList([]);
         setUsername("");
         setServerUrl("");
-        
+
         // Clean up viewer
         if (insRef.current && typeof insRef.current.destroy === 'function') {
             insRef.current.destroy();
         }
         insRef.current = null;
-        
+
         if (containerRef.current) {
             containerRef.current.innerHTML = "";
         }
@@ -56,7 +57,7 @@ const App: React.FC = () => {
     const createViewer = async () => {
         clearContainer();
         if (!containerRef.current || !token) return;
-        
+
         try {
             const ins = await WynIntegration.createReportViewer(
                 {
@@ -72,7 +73,7 @@ const App: React.FC = () => {
         }
     };
 
-    const selectedReport = (id: string, name: string) => {
+    const selectedReport = (id: string) => {
         reportIdRef.current = id;
         if (insRef.current && typeof insRef.current.destroy === 'function') {
             insRef.current.destroy();
@@ -95,9 +96,9 @@ const App: React.FC = () => {
                 "#wyn-root"
             );
             insRef.current = ins;
-            
+
             if (reportIdRef.current === "" && ins.api) {
-                 ins.api.createReport({ reportType: reportTypeRef.current });
+                ins.api.createReport({ reportType: reportTypeRef.current });
             }
         } catch (e) {
             console.error("Failed to create report designer", e);

@@ -4,6 +4,7 @@ export interface Report {
 }
 
 export const concatUrls = (...urls: string[]) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const skipNullOrEmpty = (value: any) => !!value;
     const trimLeft = (value: string, char: string) => (value.substring(0, 1) === char ? value.substring(1) : value);
     const trimRight = (value: string, char: string) => (value.substring(value.length - 1) === char ? value.substring(0, value.length - 1) : value);
@@ -24,6 +25,7 @@ const defaultHeaders = {
 
 const makeHeaders = (referenceToken: string) => ({ ...defaultHeaders, 'Reference-Token': referenceToken });
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const postGraphQlRequest = async (portalUrl: string, referenceToken: string, requestPayload: any) => {
     const url = concatUrls(portalUrl, 'api/graphql');
     const init = {
@@ -43,12 +45,13 @@ export const getReportList = async (portalUrl: string, referenceToken: string): 
     const result = await postGraphQlRequest(portalUrl, referenceToken, {
         query: 'query { documenttypes(key:"rdl") { documents { id, title } } }',
     });
-    
+
     if (!result?.data?.documenttypes?.[0]?.documents) {
         return [];
     }
 
     const { documents } = result.data.documenttypes[0];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const list = documents.map((x: any) => ({ id: x.id, name: x.title }));
     list.sort((x: Report, y: Report) => x.name.localeCompare(y.name));
     return list;

@@ -88,8 +88,12 @@ const SignIn: React.FC<SignInProps> = ({ signIn }) => {
       } else {
         setError("Authorization error");
       }
-    } catch (err: any) {
-      setError(err?.message || "Network error: Failed to fetch");
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Network error: Failed to fetch");
+      }
     }
   };
 

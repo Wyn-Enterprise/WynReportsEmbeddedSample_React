@@ -4,17 +4,17 @@ import { Report } from "../library/index";
 
 interface ReportsListProps {
     reportsList: Report[];
-    selectedReport: (id: string, name: string) => void;
+    selectedReport: (id: string) => void;
 }
 
 const ReportsList: React.FC<ReportsListProps> = ({ reportsList, selectedReport }) => {
     return (
         <div className="dashboardsList">
             {reportsList && reportsList.map((report) => (
-                <div 
-                    className="listItem" 
-                    key={report.id} 
-                    onClick={() => selectedReport(report.id, report.name)}
+                <div
+                    className="listItem"
+                    key={report.id}
+                    onClick={() => selectedReport(report.id)}
                 >
                     <h3>{report.name}</h3>
                 </div>
